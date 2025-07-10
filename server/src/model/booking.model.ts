@@ -1,5 +1,4 @@
 import mongoose, { model, Schema } from "mongoose";
-
 export interface IBooking {
   bookedBy: mongoose.Types.ObjectId;
   purpose: string;
@@ -40,6 +39,7 @@ const bookingSchema = new Schema<IBooking>(
     },
     status: {
       type: String,
+      enum: ["Pending", "Cancelled", "Approved", "Rejected"],
       default: "Pending",
     },
     bookingFor: String,
@@ -53,6 +53,6 @@ const bookingSchema = new Schema<IBooking>(
   }
 );
 
-const Booking = model("Booking", bookingSchema);
+const Booking = model<IBooking>("Booking", bookingSchema);
 
 export default Booking;

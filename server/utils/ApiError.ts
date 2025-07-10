@@ -2,9 +2,9 @@
 
 class ApiError extends Error {
   constructor(
-    statusCode: number,
-    message = "Something went wrong",
-    errors = []
+    public _statusCode: number,
+    public message = "Something went wrong",
+    public _errors = []
   ) {
     super(message);
   }
